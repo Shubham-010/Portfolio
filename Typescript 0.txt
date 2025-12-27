@@ -1,0 +1,72 @@
+** Datatypes :-
+
+1. Primitive datatype
+2. Object datatype
+3. Special datatype
+4. Advanced datatype 
+
+may include :- Function datatype
+
+* Primitive datatypes :- 
+1) number
+2) string
+3) boolean
+4) null
+5) undefined
+6) bigint
+7) symbol
+
+
+* Object datatype:-
+1) Array
+2) Tuple
+3) Object
+
+* Special datatype:-
+1) any
+2) unknown
+3) void
+4) never
+
+* Advanced datatype:-
+1) Union type (|)
+2) Intersection (&)
+3) Type Alias
+4) Enum
+5) Literal types
+
+** Type inference :- The behaviour of typescript to deteck the type of the assigned data.
+
+** Note tsc command converts ts file and makes new js files
+
+** Tuples are included in Typescript , not there in javascript
+
+** Interface 
+
+eg :- interface Info {
+	name:string
+	age:number
+	subject:string
+	}
+	
+	Inorder to use this interface we define it as object
+
+	var test = {
+	name:'shub',
+	age:30,
+	subject:'lets go!!'
+	}
+
+	var test1 = {
+	name:'shub1',
+	age:40,
+	subject:'lets go!!'
+	}
+
+	** in order to add a new parameter 
+	inference should be extended
+	
+	ie inference extend Info {
+		subject1:" "
+	}
+
