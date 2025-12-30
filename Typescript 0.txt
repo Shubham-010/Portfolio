@@ -70,3 +70,242 @@ eg :- interface Info {
 		subject1:" "
 	}
 
+
+** Type feature
+
+	1) General use is when we cannot perform union/intersection/ between interface so type feature is introduced.
+	2) But by using Type you cannot use extends properties 
+
+** Enum Data Type
+	A data type which allows you to define a set of named constants
+
+eg :-
+
+	enum whoType{
+	student:"student",
+	teacher:"teacher",
+	management:"management",
+	}
+
+	X who = "student"
+	Correct way : - var who = whoType.teacher;
+
+** DOM Handling and TypeCasting
+
+ 	var headingSel = document.querySelector("h1") !;
+
+NOTE :- ! mark at the end signify that value should be present.
+
+	While accessing the element in DOM bases of class then it is mandatory to mention ! as HtmlTYPEElement [TYPE ie anchor,header,etc].
+
+ 
+** Class
+
+1.class is termed as blueprint of object 
+2. ie 
+	class Product{
+	name:string,
+	price:number,
+	pid:number,
+	inCart=false,
+	addtoCart=false,
+	constructor(name:string,price:number,pid:number){
+	this.name = name,
+	this.price = price,
+	this.pid = pid,
+	}
+	
+	addProduct(){
+	this.inCart = true
+	}
+	buyProduct(){
+	if(this.inCart){
+	return `Product ${this.name} at ${this.price}`
+	}else{
+	return `No Product`
+	}	
+	}
+	 
+	} 
+	var addProduct = new Product('samsung',10000,101);
+
+** ACCESS MODIFIERS
+
+	private :- cannot be accessed out of parent class
+	public :- globally accessible
+	protected :- can be accessed only through extend or inheritance by child class
+
+** Inheritance :-  When a property of a class is used in different class.
+
+** Modules in Typescript :- self contained unit of code that encpsulates the related functionalities
+
+** Getter and Setter :- 
+
+	getter -  to acquire a value from a class and always have return ;
+	setter -  to update a value from the class.
+
+** Interface with class
+ 	using implement 
+
+** static keyword
+
+	A static property is a variable that belongs to the class itself, not to any instance. It is shared by all instances of the class.
+
+** typeGuard
+
+	TypeGuard in typeScript is a technique used to narrow down the type of a variable within a conditional block.	
+
+ 	Use
+	1. provide better type safety
+	2. apply conditions with data type.
+	3. helps TypeScript infer type automatically
+
+	ie 
+	let userData:number|strung|boolean = 'Anil Sidhu';
+
+
+** Generic 
+	Generics in Typescript allows you to create reusable components that works with a variety of data types while maintaining type safety.
+	
+
+ie 	function fruits<T>(name:T):T{
+	return name
+	}
+
+	NOTE:- T make generic allows you take any datatype but instead of getting any we get proper details of that parameter.
+
+	let onlyFruit = fruits("apple");  //Output :- type string with Generic 
+	let onlyNum = fruits(100);
+	
+** keyOf
+
+	In TypeScript, keyof is an operator that extracts the keys (property names) of an object type and returns them as a union of string literal types.
+	
+** index signature
+	type userDataType={
+	[key:string] = number | string
+	}
+
+** Utility Type
+
+	Utility types are build-in types that help transform or manipulate other types in convienent way.
+
+* 	Partial :- Basically allows different objects 
+	ie type collegeData{
+	name:string,
+	age:number,
+	count:number,
+	}
+
+	let collegeType:Partial<collegeData>={
+	name:string,
+	age:number,
+	count:number,
+	}
+
+* 	Required :- Mandatory the mentioned object should be present
+
+	function getCollegeData2(data:Required<CollegeType>){
+		return data
+	}
+
+
+* 	Readonly :- If you want to avoid changes in Class object.
+
+	let collegeType:Readonly<collegeData>={
+	...
+	}
+
+* 	Pick :- Segregate or choice a object from the class.
+
+* 	Omit :-  
+	interface CollegeType{
+	name:string,
+	location:string,
+	students:number,
+	branch7:number
+	}	
+
+	var ColegeData7:Omit<CollegeType,'branch'>={
+	name:'iit',
+	location:'mumbai',
+	}
+
+* 	exclude :- 
+
+	type APIStatus="loading" | 'error' | 'pending' | 'success';
+	var APICall:Exclude<APIStatus,'pending'>='success';
+	
+
+* 	extract :- 
+	type APICall2:Extract<APIStatus,'error' | 'success'>;
+	APICall2='error';
+
+* 	var randomData:NonNullable<RandomType>=null
+
+* 	Record 	:-
+
+	type SiteRole = 'admin'| 'user' | 'guest';
+	var siteRoleOption:SiteRole='manager'; //gives error
+	var RoleName:Record<SiteRole,string>={
+	Admin:'anil',
+	....
+	}
+
+** 	Namespace :- In TypeScript, namespaces are a way to organize and group related code together under a single name.
+	
+	namespace MyNamespace {
+ 	 export interface Person {
+   	 name: string;
+   	 age: number;
+  	}
+
+ 	 export function greet(person: Person): string {
+  	  return `Hello, ${person.name}!`;
+ 	 }
+
+ 	 export const greeting = "Welcome to TypeScript!";
+	}
+
+
+** 	Decorators :- 	A decorator is simply a function that gets called at runtime with specific arguments depending on where the decorator is applied.
+
+	function MyClassDecorator(constructor: Function) {
+ 	 console.log("Class Decorator applied to:", constructor.name);
+	}
+
+	@MyClassDecorator
+	class Person {
+  	constructor(public name: string) {}
+	}
+
+	const person = new Person("Alice");
+
+	NOTE :- The @MyClassDecorator is a decorator applied to the Person class.
+	The constructor of the Person class is passed to the decorator function, which logs the class name.
+
+** 	Overriding Function with Decorators
+
+	Note:- in tsconfig.json make experimentalDecorators:true
+
+** 	Typed Promise
+	
+	
+	
+	function complexLogic():Promise<string>{
+		return new Promise((resolved)=>{
+			setTimeout(()=>{
+				resolved("result is here")
+	},2000);
+	})
+	}
+
+** 	API CALLS
+	ie
+
+	async function apiCallHandling():Promise<APIType>{
+		const result = await fetch('url');
+		const data =  await result.json();
+		return data;
+	}
+	
